@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Spline Editor</title>
+<style>
+
+body {
+  font: 13px sans-serif;
+  position: relative;
+  width: 960px;
+  height: 500px;
+  background-color: #232328;
+}
+
+form {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+rect {
+  fill: none;
+  pointer-events: all;
+}
+
+.grabber {
+  cursor: pointer;
+  fill: red;
+}
+
+.line {
+  fill: none;
+  stroke: #59556c;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10px;
+}
+.blackline {
+  fill: none;
+  stroke: #817c98;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10px;
+}
+
+.circle {
+  fill: #8c87a5;
+}
+.dot {
+  fill: #59556c;
+}
+
+.selected {
+  fill: #ff7f0e;
+  stroke: #ff7f0e;
+}
+
+</style>
+<div></div>
+<script src="/d3.min.js"></script>
+<script>
+
+var width = 1200,
+    height = 900;
+
+var origin = [200,100];
+var cpos = [200, 100];
+var oldcpos = [200, 100];
+var isDown = false;
+
+var gravity = 0.3;
+var inertia = 0.5;
+var momentum = [0, 0];
+var falloff = 0;
+
+var size = {
+  'x': 280,
+  'y': 170
+}
+
+var a1p = [200, 100];
+var b1p = [150, 120];
+var c1p = [130, 183];
+var d1p = [156, 194];
+
+var b1a1 = getDelta(b1p, a1p);
+var c1b1 = getDelta(c1p, b1p);
+var d1c1 = getDelta(d1p, c1p);
+
+var svg = d3.select("body").append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("tabindex", 1);
+
+var dot1 = svg.append("circle")
+  .attr("r", 2)
+  .attr("cx", a1p[0])
+  .attr("cy", a1p[1])
+  .attr("fill", "red");
+
+var dot2 = svg.append("circle")
+  .attr("r", 2)
+  .attr("cx", b1p[0])
+  .attr("cy", b1p[1])
+  .attr("fill", "green");
+
+var dot3 = svg.append("circle")
+  .attr("r", 2)
+  .attr("cx", c1p[0])
+  .attr("cy", c1p[1])
+  .attr("fill", "blue");
+
+var dot4 = svg.append("circle")
+  .attr("r", 2)
+  .attr("cx", d1p[0])
+  .attr("cy", d1p[1])
+  .attr("fill", "orange");
+
+
+function drag(cpos) {
+  a2p = cpos;
+  b2p = getNewVector(b1p, b1a1, a2p);
+  c2p = getNewVector(c1p, c1b1, b2p);
+  d2p = getNewVector(d1p, d1c1, c2p);
+  b1p = b2p;
+  c1p = c2p;
+  d1p = d2p;
+  dot1.attr('cx', a2p[0]);
+  dot1.attr('cy', a2p[1]);
+  dot2.attr('cx', b2p[0]);
+  dot2.attr('cy', b2p[1]);
+  dot3.attr('cx', c2p[0]);
+  dot3.attr('cy', c2p[1]);
+  dot4.attr('cx', d2p[0]);
+  dot4.attr('cy', d2p[1]);
+}
+
+function getOffset(p1, p2) {
+  var xoffset = p1[0] - p2[0];
+  var yoffset = p1[1] - p2[1];
+  return [xoffset, yoffset];
+}
+
+function getDelta(p1, p2) {
+  var off = getOffset(p1, p2);
+  var delta = Math.sqrt((off[0] * off[0]) + (off[1] * off[1]));
+  return [delta, off];
+}
+
+function scaleByDelta(d1, d2) {
+  var factor = d1[0] / d2[0];
+  return [d2[1][0] * factor, d2[1][1] * factor];
+}
+
+function getNewVector(b1, db1a1, a2) {
+  var delta_b1a2 = getDelta(b1, a2);
+  if (db1a1[0] < delta_b1a2[0]) {
+    var err = scaleByDelta(db1a1, delta_b1a2);
+    return [a2[0] + err[0], a2[1] + err[1]];
+  } else {
+    return b1;
+  }
+}
+
+function mousedown() {
+  isDown = true;
+}
+function mousemove() {
+  if (isDown){
+    cpos = d3.mouse(this);
+    drag(cpos);
+  }
+}
+function mouseup() {
+  cpos = d3.mouse(this);
+  if (isDown) {
+    isDown = false;
+    //returninterval = setInterval(movement, 20);
+  }
+}
+svg.on('mousedown', mousedown);
+svg.on('mousemove', mousemove);
+svg.on('mouseup', mouseup);
+
+</script>

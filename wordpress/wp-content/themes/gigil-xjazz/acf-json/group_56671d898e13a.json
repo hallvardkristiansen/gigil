@@ -1,0 +1,42 @@
+{
+    "key": "group_56671d898e13a",
+    "title": "Venue details",
+    "fields": [
+        {
+            "key": "field_56671da5ca4ab",
+            "label": "Location",
+            "name": "location",
+            "type": "google_map",
+            "instructions": "Mark the location of the venue",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "52.5167",
+            "center_lng": "13.3833",
+            "zoom": 10,
+            "height": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "xjazz_venues"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1450110646
+}

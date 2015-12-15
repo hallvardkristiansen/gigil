@@ -1,0 +1,202 @@
+{
+    "key": "group_567050f508e3e",
+    "title": "Media carousel",
+    "fields": [
+        {
+            "key": "field_5670512389acb",
+            "label": "Media to display in carousel",
+            "name": "carousel_media",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": "",
+            "max": "",
+            "layout": "block",
+            "button_label": "Add Media",
+            "sub_fields": [
+                {
+                    "key": "field_567052a089acd",
+                    "label": "Switch to media embedder",
+                    "name": "embed_media",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0
+                },
+                {
+                    "key": "field_5670516089acc",
+                    "label": "Images",
+                    "name": "images",
+                    "type": "gallery",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_567052a089acd",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": "",
+                    "max": "",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_567052d789ace",
+                    "label": "Embed media URL",
+                    "name": "embed_media_url",
+                    "type": "oembed",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_567052a089acd",
+                                "operator": "==",
+                                "value": "1"
+                            },
+                            {
+                                "field": "field_56706ada25a83",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "width": "",
+                    "height": ""
+                },
+                {
+                    "key": "field_56706ada25a83",
+                    "label": "Use iframe embed code instead",
+                    "name": "use_iframe_embed",
+                    "type": "true_false",
+                    "instructions": "For content that doesn't support oembed, copy paste iframe embed code here",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_567052a089acd",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0
+                },
+                {
+                    "key": "field_56706b2225a84",
+                    "label": "Iframe embed code",
+                    "name": "iframe_embed",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_56706ada25a83",
+                                "operator": "==",
+                                "value": "1"
+                            },
+                            {
+                                "field": "field_567052a089acd",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "readonly": 0,
+                    "disabled": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "xjazz_artists"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "xjazz_events"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "xjazz_venues"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1450208128
+}

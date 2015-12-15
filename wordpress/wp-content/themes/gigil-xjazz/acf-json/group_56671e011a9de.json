@@ -1,0 +1,273 @@
+{
+    "key": "group_56671e011a9de",
+    "title": "Event details",
+    "fields": [
+        {
+            "key": "field_56671f881e299",
+            "label": "Time and date",
+            "name": "time_and_date",
+            "type": "repeater",
+            "instructions": "Select the dates and times doors open",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": "",
+            "max": "",
+            "layout": "block",
+            "button_label": "Add a date",
+            "sub_fields": [
+                {
+                    "key": "field_566721148de09",
+                    "label": "Date",
+                    "name": "date",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "F j, Y",
+                    "return_format": "Ymd",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_566721628de0a",
+                    "label": "Time doors open",
+                    "name": "time_doors",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "12:00": "12:00",
+                        "12:30": "12:30",
+                        "13:00": "13:00",
+                        "13:30": "13:30",
+                        "14:00": "14:00",
+                        "14:30": "14:30",
+                        "15:00": "15:00",
+                        "15:30": "15:30",
+                        "16:00": "16:00",
+                        "16:30": "16:30",
+                        "17:00": "17:00",
+                        "17:30": "17:30",
+                        "18:00": "18:00",
+                        "18:30": "18:30",
+                        "19:00": "19:00",
+                        "19:30": "19:30",
+                        "20:00": "20:00",
+                        "20:30": "20:30",
+                        "21:00": "21:00",
+                        "21:30": "21:30",
+                        "22:00": "22:00",
+                        "22:30": "22:30",
+                        "23:00": "23:00",
+                        "23:30": "23:30",
+                        "24:00": "24:00",
+                        "24:30": "24:30",
+                        "01:00": "01:00",
+                        "01:30": "01:30",
+                        "02:00": "02:00",
+                        "02:30": "02:30",
+                        "03:00": "03:00",
+                        "03:30": "03:30",
+                        "04:00": "04:00",
+                        "04:30": "04:30",
+                        "05:00": "05:00",
+                        "05:30": "05:30",
+                        "06:00": "06:00",
+                        "06:30": "06:30",
+                        "07:00": "07:00",
+                        "07:30": "07:30",
+                        "08:00": "08:00",
+                        "08:30": "08:30",
+                        "09:00": "09:00",
+                        "09:30": "09:30",
+                        "10:00": "10:00",
+                        "10:30": "10:30",
+                        "11:00": "11:00",
+                        "11:30": "11:30"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "disabled": 0,
+                    "readonly": 0
+                },
+                {
+                    "key": "field_566722718de0b",
+                    "label": "Time performance starts",
+                    "name": "time_performance",
+                    "type": "select",
+                    "instructions": "Optionally enter a time when one can expect the performance to start",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "12:00": "12:00",
+                        "12:30": "12:30",
+                        "13:00": "13:00",
+                        "13:30": "13:30",
+                        "14:00": "14:00",
+                        "14:30": "14:30",
+                        "15:00": "15:00",
+                        "15:30": "15:30",
+                        "16:00": "16:00",
+                        "16:30": "16:30",
+                        "17:00": "17:00",
+                        "17:30": "17:30",
+                        "18:00": "18:00",
+                        "18:30": "18:30",
+                        "19:00": "19:00",
+                        "19:30": "19:30",
+                        "20:00": "20:00",
+                        "20:30": "20:30",
+                        "21:00": "21:00",
+                        "21:30": "21:30",
+                        "22:00": "22:00",
+                        "22:30": "22:30",
+                        "23:00": "23:00",
+                        "23:30": "23:30",
+                        "24:00": "24:00",
+                        "24:30": "24:30",
+                        "01:00": "01:00",
+                        "01:30": "01:30",
+                        "02:00": "02:00",
+                        "02:30": "02:30",
+                        "03:00": "03:00",
+                        "03:30": "03:30",
+                        "04:00": "04:00",
+                        "04:30": "04:30",
+                        "05:00": "05:00",
+                        "05:30": "05:30",
+                        "06:00": "06:00",
+                        "06:30": "06:30",
+                        "07:00": "07:00",
+                        "07:30": "07:30",
+                        "08:00": "08:00",
+                        "08:30": "08:30",
+                        "09:00": "09:00",
+                        "09:30": "09:30",
+                        "10:00": "10:00",
+                        "10:30": "10:30",
+                        "11:00": "11:00",
+                        "11:30": "11:30"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "disabled": 0,
+                    "readonly": 0
+                }
+            ]
+        },
+        {
+            "key": "field_56671e9e39f93",
+            "label": "Venue",
+            "name": "venue",
+            "type": "relationship",
+            "instructions": "Select the venue where this event takes place",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "xjazz_venues"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "object"
+        },
+        {
+            "key": "field_56671eeb54123",
+            "label": "Artists",
+            "name": "artists",
+            "type": "relationship",
+            "instructions": "Select the artists that are performing at this event",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "xjazz_artists"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "object"
+        },
+        {
+            "key": "field_56671e18b6976",
+            "label": "LYA ticket url",
+            "name": "lya_ticket_url",
+            "type": "url",
+            "instructions": "Copy-paste the address to this events ticket page on LYA",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "xjazz_events"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1450209051
+}

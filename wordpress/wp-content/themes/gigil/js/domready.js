@@ -42,7 +42,7 @@ $(document).ready(function() {
 // Isotope grids
   var $grid = $('.grid').isotope({
     itemSelector: '.grid-item',
-    layoutMode: 'fitRows'
+    layoutMode: 'masonry'
   });
 // filter items on button click
   var filters = {};
@@ -95,5 +95,13 @@ $(document).ready(function() {
       scrollTop: 0
     }, 1000);
     return false;
+  });
+  
+  
+  // Xjazz functions, to be moved
+  $('.searchform #searchfield').focus(function() {
+    $('.searchform button').fadeIn();
+  }).blur(function() {
+    $('.searchform button').fadeOut();
   });
 });

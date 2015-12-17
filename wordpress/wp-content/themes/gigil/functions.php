@@ -23,16 +23,25 @@ endif;
 add_action( 'after_setup_theme', 'gigil_setup' );
 
 // Add customization options to theme
-function gigil_add_control_settings($setting_name, $default, $transport, $control_label, $section) {
+function gigil_add_control_settings($wp_customize, $type, $setting_name, $default, $transport, $control_label, $section) {
   $wp_customize->add_setting($setting_name, array(
       'default'     => $default,
       'transport'   => $transport
   ));
-  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $setting_name, array(
+  if ($type == 'image') {
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $setting_name, array(
       'label'    => __( $control_label, 'gigil' ),
       'section'  => $section,
       'settings' => $setting_name
-  )));
+    )));
+  }
+  if ($type == 'color') {
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $setting_name, array(
+      'label'    => __( $control_label, 'gigil' ),
+      'section'  => $section,
+      'settings' => $setting_name
+    )));
+  }
 }
 function gigil_theme_customizer( $wp_customize ) {
   // Logos
@@ -41,8 +50,8 @@ function gigil_theme_customizer( $wp_customize ) {
       'priority'    => 30,
       'description' => 'Upload a logo to replace the default site name and description in the header',
   ));
-  gigil_add_control_settings('gigil_logo', false, 'refresh', 'Logo', 'gigil_logo_section');
-  gigil_add_control_settings('gigil_mobile_logo', false, 'refresh', 'Mobile logo', 'gigil_logo_section');
+  gigil_add_control_settings($wp_customize, 'image', 'gigil_logo', false, 'refresh', 'Logo', 'gigil_logo_section');
+  gigil_add_control_settings($wp_customize, 'image', 'gigil_mobile_logo', false, 'refresh', 'Mobile logo', 'gigil_logo_section');
 
   // Colours
   $wp_customize->add_section('gigil_color_section', array(
@@ -50,21 +59,21 @@ function gigil_theme_customizer( $wp_customize ) {
       'priority'    => 30,
       'description' => 'Alter colours of theme',
   ));
-  gigil_add_control_settings('text_color', '#000000', 'postMessage', 'Text', 'gigil_color_section');
-  gigil_add_control_settings('link_color', '#000000', 'postMessage', 'Link', 'gigil_color_section');
-  gigil_add_control_settings('link_hover_color', '#000000', 'postMessage', 'Link hover', 'gigil_color_section');
-  gigil_add_control_settings('primary_color', '#000000', 'postMessage', 'Primary', 'gigil_color_section');
-  gigil_add_control_settings('secondary_color', '#000000', 'postMessage', 'Secondary', 'gigil_color_section');
-  gigil_add_control_settings('error_color', '#FF0000', 'postMessage', 'Error', 'gigil_color_section');
-  gigil_add_control_settings('warning_color', '#FFFF00', 'postMessage', 'Warning', 'gigil_color_section');
-  gigil_add_control_settings('ok_color', '#00FFFF', 'postMessage', 'All ok', 'gigil_color_section');
-  gigil_add_control_settings('search_bg_color', '#000000', 'postMessage', 'Search field background', 'gigil_color_section');
-  gigil_add_control_settings('header_bg_color', '#FFFFFF', 'postMessage', 'Header background', 'gigil_color_section');
-  gigil_add_control_settings('body_bg_color', '#FFFFFF', 'postMessage', 'Body background', 'gigil_color_section');
-  gigil_add_control_settings('sponsors_bg_color', '#FFFFFF', 'postMessage', 'Sponsors background', 'gigil_color_section');
-  gigil_add_control_settings('footer_bg_color', '#000000', 'postMessage', 'Footer background', 'gigil_color_section');
-  gigil_add_control_settings('footer_text_color', '#FFFFFF', 'postMessage', 'Footer text', 'gigil_color_section');
-  gigil_add_control_settings('footer_link_color', '#FFFFFF', 'postMessage', 'Footer link', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'text_color', '#000000', 'postMessage', 'Text', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'link_color', '#000000', 'postMessage', 'Link', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'link_hover_color', '#000000', 'postMessage', 'Link hover', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'primary_color', '#000000', 'postMessage', 'Primary', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'secondary_color', '#000000', 'postMessage', 'Secondary', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'error_color', '#FF0000', 'postMessage', 'Error', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'warning_color', '#FFFF00', 'postMessage', 'Warning', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'ok_color', '#00FFFF', 'postMessage', 'All ok', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'search_bg_color', '#000000', 'postMessage', 'Search field background', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'header_bg_color', '#FFFFFF', 'postMessage', 'Header background', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'body_bg_color', '#FFFFFF', 'postMessage', 'Body background', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'sponsors_bg_color', '#FFFFFF', 'postMessage', 'Sponsors background', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'footer_bg_color', '#000000', 'postMessage', 'Footer background', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'footer_text_color', '#FFFFFF', 'postMessage', 'Footer text', 'gigil_color_section');
+  gigil_add_control_settings($wp_customize, 'color', 'footer_link_color', '#FFFFFF', 'postMessage', 'Footer link', 'gigil_color_section');
 }
 add_action( 'customize_register', 'gigil_theme_customizer' );
 
@@ -79,7 +88,7 @@ function gigil_customize_css() {
   echo '.error { color: ' . get_theme_mod('error_color', '#000000') . ';}';
   echo '.warning { color: ' . get_theme_mod('warning_color', '#000000') . ';}';
   echo '.ok { color: ' . get_theme_mod('ok_color', '#000000') . ';}';
-  echo '#search-field { background-color: ' . get_theme_mod('search_bg_color', '#000000') . ';}';
+  echo '#searchfield { background-color: ' . get_theme_mod('search_bg_color', '#000000') . ';}';
   echo '#header { background-color: ' . get_theme_mod('header_bg_color', '#FFFFFF') . ';}';
   echo '#sponsors { background-color: ' . get_theme_mod('sponsors_bg_color', '#FFFFFF') . ';}';
   echo '#footer { color: ' . get_theme_mod('footer_text_color', '#FFFFFF') . '; background-color: ' . get_theme_mod('footer_bg_color', '#FFFFFF') . ';}';

@@ -19,7 +19,7 @@ get_template_part( 'template-parts/snippet', 'navigation' );
     <div class="row">
       <div class="col-sm-9 col-xs-12">
       <?php if ( $events->have_posts() ) : ?>
-        <div class="col-xs-12 featured owl-carousel">
+        <div class="col-xs-12 featured owl-carousel noPadding">
           <?php while ( $events->have_posts() ) : $events->the_post();
             if (get_field('featured_on_home')) : ?>
             <div class="imagewrapper">
@@ -32,7 +32,7 @@ get_template_part( 'template-parts/snippet', 'navigation' );
           <?php endif;
           endwhile; ?>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-12 grid">
           <?php while ( $events->have_posts() ) : $events->the_post(); ?>
             <div class="col-md-4 col-sm-6 col-xs-6 block grid-item <?php echo custom_taxonomies_terms_classes(get_the_ID(), get_post_type()); ?>">
             <?php get_template_part( 'template-parts/snippet', 'grid_element' ); ?>

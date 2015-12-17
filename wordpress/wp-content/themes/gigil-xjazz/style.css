@@ -19,7 +19,7 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-size: 1.2em;
-  font-weight: bold;
+  font-weight: 700;
   margin-top: 0;
 }
 
@@ -30,6 +30,9 @@ h1, h2, h3, h4, h5 {
 .tb_margin_2em {
   margin-top: 2em;
   margin-bottom: 2em;
+}
+.t_margin_3em {
+  margin-top: 3em;
 }
 .tb_margin_2pct {
   margin-top: 2%;
@@ -117,6 +120,13 @@ a.button, .filter-button-group button {
   background-color: #F20000;
   margin-bottom: 0.3em;
 }
+a.button {
+  float: left;
+  clear: both;
+}
+a.button:hover, a.button:active {
+  background-color: #434953;
+}
 .filter-button-group button {
   font-size: 0.8em;
   border-radius: 5px;
@@ -131,12 +141,35 @@ a.button, .filter-button-group button {
   background-color: #F20000;
 }
 
+.venue {
+  padding: 1em;
+  margin: 1em 1em 1em 0;
+  background-color: #EEEEF1;
+  border: 1px solid #DDDDE1;
+}
+.venue .venuemarker {
+  float: left;
+  margin: 0 0.5em 0 0;
+}
+a:hover svg #mapmarker {
+  fill: #434953;
+}
+a svg #mapmarker { 
+  transition: 200ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 200ms;
+  -webkit-transition-timing-function: ease-in-out;
+}
+.mapmarker {
+  float: left;
+  display: inline-block;
+  margin: 0.5em 1em 1.5em 0.3em;
+  vertical-align: middle;
+}
 
 #search-field {
   margin: 0;
   padding: 0;
-  background: #0F334F;
-  color: white;
 }
 #search-field form {
   margin-bottom: 0;
@@ -147,23 +180,35 @@ a.button, .filter-button-group button {
   clear: none;
   padding: 0.5em 0 0;
   color: white;
-  font-weight: normal;
+  font-weight: 500;
 }
 #search-field input {
-  background: inherit;
+  background: white url(grfx/entypo/magnifying-glass.svg) no-repeat 0.7em center;
+  background-size: 20px;
   border: none;
   box-shadow: none;
-  color: white;
-  border-radius: 0;
+  color: #434953;
+  border-radius: 15px;
   margin-bottom: 0;
   float: left;
   display: block;
   clear: none;
-  width: 80%;
-  padding: 0;
+  width: 70%;
+  max-width: 300px;
+  padding: 0 0 0 2.5em;
 }
 #search-field button {
   display: none;
+  float: left;
+  margin-left: 7px;
+  border-radius: 15px;
+  border: none;
+  background-color: #434953;
+  color: white;
+  font-weight: 400;
+  padding: 0.8em 1.2em;
+  line-height: 1em;
+  font-size: 0.8em;
 }
 
 
@@ -298,7 +343,7 @@ nav ul li {
   line-height: 1.5em;
   font-size: 1em;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 700;
   display: inline-block;
 }
 #navigation a:hover, 
@@ -322,7 +367,7 @@ nav .secondary_navigation .current-menu-item > a {
 }
 
 #google_map {
-  height: 400px;
+  height: 460px;
   border: 1em solid white;
 }
 
@@ -427,15 +472,18 @@ nav .secondary_navigation .current-menu-item > a {
 }
 
 .block {
+  margin-bottom: 2.5%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 .block h4 {
   font-size: 1em;
-  font-weight: bold;
+  font-weight: 700;
   margin-top: 0;
 }
 .block .inner {
   width: 100%;
-  min-height: 400px;
+  min-height: 280px;
   display: block;
   float: left;
   clear: both;
@@ -459,11 +507,14 @@ nav .secondary_navigation .current-menu-item > a {
   display: block;
   float: left;
   clear: both;
-  padding: 1em 1em 4em 1em;
+  padding: 1em 1em 1.5em 1em;
 }
 .block .element-info .button {
   float: left;
   margin-top: 1em;
+}
+.block .element-info .button:hover, .block .element-info .button:active {
+  background-color: #434953;
 }
 .block .element-info .buttons {
   width: 100%;
@@ -482,8 +533,8 @@ nav .secondary_navigation .current-menu-item > a {
 .block .element-info .buttons .button.tickets {
   background-color: #434953;
 }
-.block .elemetn-info .button {
-  
+.block .element-info .buttons .button.tickets:hover, .block .element-info .buttons .button.tickets:active {
+  background-color: #F20000;
 }
 
 a.close {
@@ -520,7 +571,7 @@ a.close:hover {
   color: white;
 }
 .imagewrapper .image_captions h4 {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1em;
 }
 .videowrapper {
@@ -728,8 +779,7 @@ a.close:hover {
   color: white;
 }
 .banners .banner:hover button a, .banners .banner:active button a {
-  background-color: white;
-  color: #434953;
+  background-color: #F20000;
 }
 
 .newsletter {
@@ -780,7 +830,6 @@ a.close:hover {
 }
 .sharing .ssba {
   margin-left: 0.5em;
-  float: right;
 }
 
 .social-navigation a:before, .ssba a:before {
@@ -840,7 +889,8 @@ a.close:hover {
 }
 
 .ssba a {
-	border: 2px solid #3E3E3E !important;
+  color: #434953 !important;
+	border: 2px solid #434953 !important;
 	border-radius: 50px;
 	display: inline-block;
 	height: 30px;
@@ -850,7 +900,8 @@ a.close:hover {
 	margin: 0 0 0 0.3em;
 }
 .ssba a:hover, .ssba a:active {
-	border: 2px solid #DF6F5D !important;
+	border: 2px solid #f10000 !important;
+  color: #f10000 !important;
 }
 .ssba a img {
   display: none !important;

@@ -202,18 +202,17 @@ $(document).ready(function() {
     }
     var map = new google.maps.Map(document.getElementById('google_map'), mapOptions);
 
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var labelIndex = 0;
     var category_id = $('#google_map').attr('data-catid');
-    $.getJSON('/wp-json/wp/v2/xjazz_venues/?filter[cat]='+category_id, function(data) {
+    var venue_id = $('#google_map').attr('data-venue-id');
+    var api_path = category_id > 0 ? '/wp-json/wp/v2/xjazz_venues/?filter[cat]='+category_id : '/wp-json/wp/v2/xjazz_venues/' + venue_id;
+    $.getJSON(api_path, function(data) {
       if (data.length) {
         $.each(data, function(index, node) {
-          console.log(index, node);
           var latlong = {lat: parseFloat(node.acf.location.lat), lng: parseFloat(node.acf.location.lng)};
           var marker = new google.maps.Marker({
             position: latlong,
             map: map,
-            label: labels[labelIndex++ % labels.length],
+            icon: '/mapicon.png',
             title: node.title.rendered
           });
           var contentString = '<div id="content">'+
@@ -236,8 +235,35 @@ $(document).ready(function() {
           });
           mapcenter = latlong;
         });
-        map.setCenter(mapcenter);
+      } else if (data.acf) {
+          var latlong = {lat: parseFloat(data.acf.location.lat), lng: parseFloat(data.acf.location.lng)};
+          var marker = new google.maps.Marker({
+            position: latlong,
+            map: map,
+            icon: '/mapicon.png',
+            title: data.title.rendered
+          });
+          var contentString = '<div id="content">'+
+                '<div id="siteNotice">'+
+                '</div>'+
+                '<h1 id="firstHeading" class="firstHeading">'+data.title.rendered+'</h1>'+
+                '<div id="bodyContent">'+
+                '<p>'+data.acf.location.address+'</p>'+
+                data.excerpt.rendered+
+                '<p><a href="'+data.link+'">'+
+                'Read more</a> '+
+                '</div>'+
+                '</div>'; 
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 300
+          });
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+          mapcenter = latlong;
       }      
+        map.setCenter(mapcenter);
     });
   }
 });

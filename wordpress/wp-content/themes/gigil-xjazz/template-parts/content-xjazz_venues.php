@@ -6,66 +6,19 @@
 
 $this_id = get_the_ID();
 $events = get_posts(array(
-	'post_type' => 'xjazz_events',
-	'meta_query' => array(
-		array(
-			'key' => 'venue', // name of custom field
-			'value' => '"' . $this_id . '"', // matches exaclty "123", not just 123. This prevents a match for "1234"
-			'compare' => 'LIKE'
-		)
-	)
-));
+  	'numberposts'	=> -1,
+  	'post_type'		=> 'xjazz_events',
+  	'post_parent' => 0,
+  	'meta_key'		=> 'venue',
+  	'meta_value'	=> $this_id,
+  	'suppress_filters' => false
+  ));
 ?>
   <div class="container">
     <div class="row">
       <div class="col-md-9 col-sm-12">
-        <?php if (get_field('carousel_media') || has_post_thumbnail()) : ?>
-          <div class="col-xs-12 featured owl-carousel">
-            <?php if (has_post_thumbnail()) : ?>
-              <div class="imagewrapper">
-                <?php echo the_post_thumbnail('title-image'); ?>
-                <div class="image_captions">
-                  <h4><?php echo get_post(get_post_thumbnail_id())->post_title; ?></h4>
-                  <p><?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?></p>
-                </div>
-              </div>
-            <?php endif; ?>
-            <?php if (get_field('carousel_media')) : ?>
-              <?php while(has_sub_field('carousel_media')) : 
-                if (get_sub_field('embed_media')) : 
-                  if (get_sub_field('use_iframe_embed')) :
-                    echo '<div class="videowrapper">'.get_sub_field('iframe_embed').'</div>';
-                  else :
-                    echo '<div class="videowrapper">'.get_sub_field('embed_media_url').'</div>';
-                  endif;
-                elseif (get_sub_field('images')) : 
-                  foreach (get_sub_field('images') as $index=>$image) : ?>
-                    <div class="imagewrapper">
-                      <?php echo wp_get_attachment_image($image['id'], 'title-image'); ?>
-                      <div class="image_captions">
-                        <h4><?php echo $image['title']; ?></h4>
-                        <p><?php echo $image['caption']; ?></p>
-                      </div>
-                    </div>
-                <?php endforeach;
-                endif; ?>
-              <?php endwhile; ?>
-            <?php endif; ?>
-          </div>
-        <?php endif; ?>
-        <div class="modal fade" id="imgviewer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body">
-                <img src="" alt="image" id="theimage" />
-              </div>
-            </div>
-          </div>
-        </div>
-      <?php if ($events) : ?>
+        <?php get_template_part( 'template-parts/snippet', 'carousel' ); ?>
+        <?php if ($events) : ?>
         <div class="row">
           <h1 class="col-xs-12">Upcoming gigs</h1>
           <div class="col-xs-12">

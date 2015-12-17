@@ -204,8 +204,8 @@ $(document).ready(function() {
 
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var labelIndex = 0;
-
-    $.getJSON('/wp-json/wp/v2/xjazz_venues', function(data) {
+    var category_id = $('#google_map').attr('data-catid');
+    $.getJSON('/wp-json/wp/v2/xjazz_venues/?filter[cat]='+category_id, function(data) {
       if (data.length) {
         $.each(data, function(index, node) {
           console.log(index, node);

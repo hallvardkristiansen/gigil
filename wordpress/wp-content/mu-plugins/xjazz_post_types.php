@@ -41,7 +41,7 @@ class xjazz_post_types {
   		'label'                 => __( $singular),
   		'description'           => __( $singular.' profiles'),
   		'labels'                => $labels,
-  		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', ),
+  		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions'),
   		'taxonomies'            => $taxonomies,
   		'hierarchical'          => false,
   		'public'                => true,
@@ -54,7 +54,7 @@ class xjazz_post_types {
   		'show_in_rest'          => true,
   		'query_var'             => true,
   		'can_export'            => true,
-  		'has_archive'           => true,		
+  		'has_archive'           => false,		
   		'exclude_from_search'   => false,
   		'publicly_queryable'    => true,
   		'capability_type'       => 'page',
@@ -93,9 +93,9 @@ class xjazz_post_types {
   
   function xjazz_create_custom_post_types() {  
     register_taxonomy('genres', 'genres', $this->xjazz_add_taxonomy_args('Genre', 'Genres', 'genre'));
-  	register_post_type( 'xjazz_artists', $this->xjazz_add_post_type_args('Artist', 'Artists', array('genres'), 'dashicons-groups'));
-  	register_post_type( 'xjazz_events', $this->xjazz_add_post_type_args('Event', 'Events', array('genres'), 'dashicons-tickets-alt'));
-  	register_post_type( 'xjazz_venues', $this->xjazz_add_post_type_args('Venue', 'Venues', array(), 'dashicons-location'));
+  	register_post_type( 'xjazz_artists', $this->xjazz_add_post_type_args('Artist', 'Artists', array('genres', 'category'), 'dashicons-groups'));
+  	register_post_type( 'xjazz_events', $this->xjazz_add_post_type_args('Event', 'Events', array('genres', 'category'), 'dashicons-tickets-alt'));
+  	register_post_type( 'xjazz_venues', $this->xjazz_add_post_type_args('Venue', 'Venues', array('category'), 'dashicons-location'));
   }
 }
 $xjazz_post_types = new xjazz_post_types;

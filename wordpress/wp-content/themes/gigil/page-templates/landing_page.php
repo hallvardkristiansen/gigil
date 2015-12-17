@@ -10,6 +10,7 @@ $banners_args = ['post_type'=>'gigil_banners', 'showposts'=>10];
 $banners = new WP_Query( $banners_args );
 $this_id = get_the_ID();
 
+get_template_part( 'template-parts/snippet', 'navigation' );
 ?>
   <div class="container">
     <div class="row">

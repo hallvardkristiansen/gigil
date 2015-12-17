@@ -63,7 +63,7 @@ class gigil_post_types {
   		'show_in_nav_menus'     => true,
   		'show_in_rest'          => true,
   		'can_export'            => true,
-  		'has_archive'           => true,		
+  		'has_archive'           => false,		
   		'exclude_from_search'   => false,
   		'publicly_queryable'    => true,
   		'capability_type'       => 'page',
@@ -72,8 +72,8 @@ class gigil_post_types {
   }
   
   function gigil_create_custom_post_types() {  
-  	register_post_type( 'gigil_sponsors', $this->gigil_add_post_type_args('Sponsor', 'Sponsors', array(''), 'dashicons-businessman', false, false, false));
-  	register_post_type( 'gigil_banners', $this->gigil_add_post_type_args('Banner', 'Banners', array(''), 'dashicons-welcome-widgets-menus', false, false, false));    
+  	register_post_type( 'gigil_sponsors', $this->gigil_add_post_type_args('Sponsor', 'Sponsors', array('category'), 'dashicons-businessman', false, false, false));
+  	register_post_type( 'gigil_banners', $this->gigil_add_post_type_args('Banner', 'Banners', array('category'), 'dashicons-welcome-widgets-menus', false, false, false));    
   }
 }
 $gigil_post_types = new gigil_post_types;

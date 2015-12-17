@@ -188,7 +188,7 @@
             "key": "field_56671e9e39f93",
             "label": "Venue",
             "name": "venue",
-            "type": "relationship",
+            "type": "post_object",
             "instructions": "Select the venue where this event takes place",
             "required": 0,
             "conditional_logic": 0,
@@ -201,13 +201,10 @@
                 "xjazz_venues"
             ],
             "taxonomy": [],
-            "filters": [
-                "search"
-            ],
-            "elements": "",
-            "min": "",
-            "max": "",
-            "return_format": "object"
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
         },
         {
             "key": "field_56671eeb54123",
@@ -237,10 +234,10 @@
         },
         {
             "key": "field_56671e18b6976",
-            "label": "LYA ticket url",
-            "name": "lya_ticket_url",
+            "label": "Ticket url",
+            "name": "ticket_url",
             "type": "url",
-            "instructions": "Copy-paste the address to this events ticket page on LYA",
+            "instructions": "Copy-paste the address to this events ticket page",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -269,5 +266,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1450209051
+    "modified": 1450323810
 }

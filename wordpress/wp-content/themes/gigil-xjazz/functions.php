@@ -1,5 +1,7 @@
 <?php
 
+$searchable_post_types = array('post', 'page', 'xjazz_events', 'xjazz_artists', 'xjazz_venues'); 
+
 if ( ! function_exists( 'xjazz_setup' ) ) :
   function xjazz_setup() {
   	register_nav_menus( array(
@@ -14,6 +16,15 @@ function xjazz_scripts() {
   wp_enqueue_script( 'xjazz-map-script', get_stylesheet_directory_uri() . '/js/google_maps.js', array('jquery'), '20150330', true);
 }
 add_action( 'wp_enqueue_scripts', 'xjazz_scripts' );
+
+function searchfilter($query) {
+  global $searchable_post_types;
+  if ($query->is_search) {
+    $query->set('post_type', $searchable_post_types);
+  }
+  return $query;
+}
+add_filter('pre_get_posts','searchfilter');
 
 
 // Utility functions

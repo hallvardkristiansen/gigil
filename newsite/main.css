@@ -188,23 +188,22 @@ nav ul li a.is-checked {
 
 .trigger img {
   filter: grayscale(100%);
-  -webkit-filter: grayscale(100%); /* For Webkit browsers */
   filter: gray; /* For IE 6 - 9 */
-  -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-  opacity: 0.4;
-  -webkit-backface-visibility: hidden;
-}
-.trigger img:hover, .trigger.hover img {
-  filter: grayscale(0%);
-  -webkit-filter: grayscale(0%);
-  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-  opacity: 1;
+  -webkit-filter: grayscale(100%); /* For Webkit browsers */
   -webkit-transition: all 400ms ease-out;
   -moz-transition: all 400ms ease-out;
   -ms-transition: all 400ms ease-out;
   -o-transition: all 400ms ease-out;
   transition: all 400ms ease-out;
+  opacity: 0.4;
+  -webkit-backface-visibility: hidden;
+}
+.trigger img:hover, .trigger.hover img {
+  filter: grayscale(0%);
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(0%);
+  opacity: 1;
   -webkit-backface-visibility: hidden;
 }
 

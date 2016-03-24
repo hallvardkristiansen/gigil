@@ -47,47 +47,25 @@
     <div class="container-fluid content">
       <div class="row">
         <div class="grid col-xs-12">
-          <div class="stamp" id="displaypane">
-            <div class="infopane">
-              <div class="owl-carousel owl-theme">
-                <div class="imagewrapper"><img src="samples/actual_ones/edgefolio/sample_large.png" alt="sample_large" width="1600" height="900"></div>
-                <div class="imagewrapper"><img src="samples/actual_ones/edgefolio/sample_large_close_4.png" alt="sample_large_close_4" width="1600" height="900"></div>
-                <div class="imagewrapper"><img src="samples/actual_ones/edgefolio/sample_large_close_3.png" alt="sample_large_close_3" width="1600" height="900"></div>
-                <div class="imagewrapper"><img src="samples/actual_ones/edgefolio/sample_large_close_1.png" alt="sample_large_close_1" width="1600" height="900"></div>
-                <div class="imagewrapper"><img src="samples/actual_ones/edgefolio/sample_large_close_2.png" alt="sample_large_close_2" width="1600" height="900"></div>
-                <div class="videowrapper"><a class="owl-video" href="https://vimeo.com/97531368"></a></div>
-                <div class="videowrapper"><a class="owl-video" href="https://vimeo.com/115868816"></a></div>
-                <div class="videowrapper"><a class="owl-video" href="https://vimeo.com/115876508"></a></div>
-                <div class="videowrapper"><a class="owl-video" href="https://vimeo.com/142147126"></a></div>
-              </div>
-              <div class="textbox">
-                <div class="column_1 col-xs-12 col-sm-6">
-                  <h1>Edgefolio</h1>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel metus sed mauris ultricies pellentesque id et odio. Pellentesque at arcu sed urna auctor fermentum a vitae lacus. Quisque vel ultrices orci. Aliquam sollicitudin, est nec cursus elementum, diam purus mattis nisi, non feugiat odio tellus nec odio. Aenean lobortis nulla vitae eros maximus, vitae ultrices est eleifend.</p>
-                </div>
-                <div class="column_2 col-xs-12 col-sm-6">
-                  <p>Integer ut nisl porta, condimentum tellus non, elementum dui. Morbi ut posuere erat. Donec est arcu, cursus sit amet dictum in, aliquet quis dui. Integer in nibh euismod, mollis mauris at, eleifend est. Etiam sit amet dictum elit, in sagittis sapien.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="stamp" id="displaypane"></div>
           <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
-            <a href="#sample" class="trigger"><img src="samples/actual_ones/edgefolio/Peer_groups_graphs.png" alt="Peer_groups_graphs" width="1000" height="875"></a>
+            <a href="#sample" class="trigger"><img src="samples/actual_ones/quads/sample_quads_small.png" alt="sample_quads_small" width="500" height="500"></a>
             <div class="infopane">
               <div class="owl-carousel">
-                <div class="imagewrapper"><img src="grfx/sample_large.png" /></div>
-                <div class="imagewrapper"></div>
-                <div class="videowrapper"></div>
-                <div class="imagewrapper"></div>
-                <div class="imagewrapper"></div>
+                <div class="imagewrapper"><img src="samples/actual_ones/quads/sample_quads.png" alt="sample_quads" width="1600" height="900"></div>
+                <div class="imagewrapper"><img src="samples/actual_ones/quads/sample_quads2.jpg" alt="sample_quads" width="1600" height="900"></div>
+                <div class="imagewrapper"><img src="samples/actual_ones/quads/hexa1_large.jpg" alt="hexa1_large" width="1600" height="900"></div>
               </div>
               <div class="textbox">
                 <div class="column_1 col-xs-12 col-sm-6">
-                  <h1>Lorem ipsum</h1>
-                  <p>Dolor sit amet</p>
+                  <h1>Various multipcopters</h1>
+                  <p>Some of the multicopters I've designed and built over the years.</p>
+                  <p>The first one I designed, built and programmed in 2010 entirely from scratch using an Arduino Pro and Sparkfun's 9dof IMU.<br/>
+                    The benefit of that setup was that the IMU has it's own ATMEGA chip, so it can fully preprocess the sensor data before passing to the Arduino which runs the PID loop.</p>
                 </div>
                 <div class="column_2 col-xs-12 col-sm-6">
-                  <p>Dolor sit amet</p>
+                  <p>I achieved an update frequency of approximately 250hz using this setup, which was enough for stable flight, however well below the recommended 500hz minimum.</p>
+                  <p>Later models are hybrids of open source controllers, kits and shelf components.</p>
                 </div>
               </div>
             </div>
@@ -97,7 +75,7 @@
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2 initial">
             <a href="#sample" class="trigger"><img src="samples/actual_ones/edgefolio/Fund_Profile_Revision.png" alt="Fund_Profile_Revision" width="1000" height="750"></a>
             <div class="infopane">
               <div class="owl-carousel owl-theme">
@@ -114,10 +92,16 @@
               <div class="textbox">
                 <div class="column_1 col-xs-12 col-sm-6">
                   <h1>Edgefolio</h1>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel metus sed mauris ultricies pellentesque id et odio. Pellentesque at arcu sed urna auctor fermentum a vitae lacus. Quisque vel ultrices orci. Aliquam sollicitudin, est nec cursus elementum, diam purus mattis nisi, non feugiat odio tellus nec odio. Aenean lobortis nulla vitae eros maximus, vitae ultrices est eleifend.</p>
+                  <p>Web application for navigating Hedge Fund performance data from Morningstar.</p>
+                  <p>My roles in this project included all brand design and art direction, user experience planning, user interface design and scripting of all widgets and graphs from 2013 until 2015.</p>
+                  <p>Built with Angular.js and D3.js using Elasticsearch and a Django based Rest API.</p>
                 </div>
                 <div class="column_2 col-xs-12 col-sm-6">
-                  <p>Integer ut nisl porta, condimentum tellus non, elementum dui. Morbi ut posuere erat. Donec est arcu, cursus sit amet dictum in, aliquet quis dui. Integer in nibh euismod, mollis mauris at, eleifend est. Etiam sit amet dictum elit, in sagittis sapien.</p>
+                  <p>The application was designed and built to work with both desktop and tablets.</p>
+                  <p>Angular.js framework and HTML/CSS templates by Ahmet Atasoy.
+Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
+                  <p>The design has now changed, but most of my graphs remain:<br/>
+                    <a href="http://www.edgefolio.com" target="_blank">www.edgefolio.com</a></p>
                 </div>
               </div>
             </div>
@@ -128,10 +112,10 @@
             <div class="games hidden">z</div>
           </div>
           <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
-            <a href="#sample" class="trigger"><img src="samples/actual_ones/edgefolio/Search_minimal.png" alt="Search_minimal" width="1000" height="750"></a>
+            <a href="#sample" class="trigger"><img src="samples/actual_ones/desktop_hydroponics/sample.jpg" alt="sample" width="500" height="500"></a>
             <div class="infopane">
               <div class="owl-carousel">
-                <div class="imagewrapper"><img src="grfx/sample_large.png" /></div>
+                <div class="imagewrapper"><img src="samples/actual_ones/desktop_hydroponics/sample_large.jpg" alt="sample_large" width="1600" height="900"></div>
                 <div class="imagewrapper"></div>
                 <div class="videowrapper"></div>
                 <div class="imagewrapper"></div>
@@ -139,11 +123,15 @@
               </div>
               <div class="textbox">
                 <div class="column_1 col-xs-12 col-sm-6">
-                  <h1>Lorem ipsum</h1>
-                  <p>Dolor sit amet</p>
+                  <h1>Tabletop hydroponics</h1>
+                  <p>I built this small hydroponic/deep water culture setup to grow herbs on top of my refrigerator. So far I've successfully grown basil, thyme, tarragon, spearmint, oregano and strawberries.</p>
+                  <p>The growth pictured above took about two months from seed.</p>
+                  <p>The bulbs are custom made, full-spectrum, air-cooled LEDs rated for 54W but pulling approximately 27W each.</p>
                 </div>
                 <div class="column_2 col-xs-12 col-sm-6">
-                  <p>Dolor sit amet</p>
+                  <p>Water circulation is driven by a small brushless water pump immersed in the tub, sometimes supplemented with a standard aquarium air pump with air stones.</p>
+                  <p>Lighting is controlled using digital socket timers bought in an electronics store.</p>
+                  <p>I use coconut husk and hydroton for growth medium and standard, hydroponic nutrients from the gardening shop.</p>
                 </div>
               </div>
             </div>
@@ -165,11 +153,12 @@
               </div>
               <div class="textbox">
                 <div class="column_1 col-xs-12 col-sm-6">
-                  <h1>Lorem ipsum</h1>
-                  <p>Dolor sit amet</p>
+                  <h1>Promotional material for Koffäin</h1>
+                  <p>Various flyers, posters and facebook banners designed for events organised by Koffäin.</p>
                 </div>
                 <div class="column_2 col-xs-12 col-sm-6">
-                  <p>Dolor sit amet</p>
+                  <p>Dunno what to say about this really</p>
+                  <p><a href="http://www.koffaein.de" target="_blank">www.koffaein.de</a></p>
                 </div>
               </div>
             </div>

@@ -10,6 +10,19 @@ function concatValues( obj ) {
 var $grid = false;
 var prevTrigger = false;
 $(document).ready(function() {
+  $grid = $('.grid').isotope({
+    layoutMode: 'packery',
+    itemSelector: '.grid-item',
+    stamp: '.stamp',
+    percentPosition: true,
+    getSortData: {
+      websites: '.websites',
+      interfaces: '.interfaces',
+      print: '.print',
+      electronics: '.electronics',
+      games: '.games'
+    }
+  });
   $('.owl-carousel').owlCarousel({
     items: 1,
     loop: true,
@@ -23,12 +36,6 @@ $(document).ready(function() {
   });
   var allCarousels = $('.owl-carousel').data('owlCarousel');
   $('.infopane').hide();
-  
-  $('.stamp .infopane').show();
-  var carousel = $('.stamp').find('.owl-carousel').data('owlCarousel');
-  carousel._width = $('.stamp .infopane').width();
-  carousel.invalidate('width');
-  carousel.refresh();
   
   $('#logo').click(function() {
     $('#next_project').click();
@@ -150,21 +157,11 @@ $(document).ready(function() {
     });
     $('.trigger').removeClass('hover');
   });
+  
+  
+  $('.initial .trigger').click();
 });
 
 $(window).load(function() {
-  $grid = $('.grid').isotope({
-    layoutMode: 'packery',
-    itemSelector: '.grid-item',
-    stamp: '.stamp',
-    percentPosition: true,
-    getSortData: {
-      websites: '.websites',
-      interfaces: '.interfaces',
-      print: '.print',
-      electronics: '.electronics',
-      games: '.games'
-    }
-  });
   $grid.isotope('layout');
 });

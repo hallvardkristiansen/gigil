@@ -37,29 +37,12 @@
           <div class="col-xs-2 noPadding"><a href="#next" id="next_project"></a></div>
         </div>
         <nav class="col-xs-4 col-sm-5">
-          <ul class="text-right hidden-xs">
+          <ul class="text-right">
             <li><a href="#email">email</a></li>
             <li><a href="#linkedin">linkedin</a></li>
           </ul>
         </nav>
       </header>
-      <div class="mobile-menu">
-        <nav class="filters col-xs-12">
-          <ul class="button-group text-center">
-            <li><a data-filter="websites" href="#websites" class="is-checked">websites</a></li>
-            <li><a data-filter="interfaces" href="#interfaces">interfaces</a></li>
-            <li><a data-filter="print" href="#print">print</a></li>
-            <li><a data-filter="electronics" href="#electronics">electronics</a></li>
-            <li><a data-filter="games" href="#games">games</a></li>
-          </ul>
-        </nav>
-        <nav class="col-xs-12 lock-to-bottom">
-          <ul class="text-center">
-            <li><a href="#email">email</a></li>
-            <li><a href="#linkedin">linkedin</a></li>
-          </ul>
-        </nav>
-      </div>
     </div>
     <div class="container-fluid content">
       <div class="row">

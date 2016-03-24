@@ -1,0 +1,369 @@
+body {
+  font-family: 'Oxygen','Helvetica Neue', 'Helvetica', sans-serif;
+  font-size: 12px;
+  background: #2D323C url(grfx/bg_grid.png) repeat-y center center;
+  overflow-y: scroll;
+}
+.noPadding {
+  padding: 0 !important;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 6em;
+  z-index: 10;
+  background: #363C49 none;
+  overflow: visible;
+  box-shadow: 0px 0.5em 0px rgba(0, 0, 0, 0.4);
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 3em 0 1em 0;
+  padding: 0;
+}
+nav ul li {
+  display: inline-block;
+  clear: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li a:link, nav ul li a:visited {
+  display: inline-block;
+  color: white;
+  padding: 0.5em 0.5em;
+  line-height: 1em;
+  -webkit-transition: all 400ms ease-out;
+  -moz-transition: all 400ms ease-out;
+  -ms-transition: all 400ms ease-out;
+  -o-transition: all 400ms ease-out;
+  transition: all 400ms ease-out;
+}
+nav ul li a:hover {
+  background: #222233 none;
+  text-decoration: none;
+}
+nav ul li a.is-checked {
+  color: white;
+  background: #FFAA45 none;
+  text-decoration: none;
+}
+
+#logo {
+  display: block;
+  width: 100%;
+  background: #FFAA45 none;
+  padding: 1.5em 0 1.25em;
+  position: absolute;
+  top: 1em;
+  z-index: 1;
+  color: white;
+  box-shadow: 0px 0.5em 0px rgba(0, 0, 0, 0.4);
+}
+#logo img {
+  max-width: 3.2em;
+  height: auto;
+}
+
+.mobile-menu {
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 7em;
+  left: 0;
+  text-align: center;
+}
+.mobile-menu nav ul {
+  margin: 1em 0 0;
+}
+.mobile-menu nav ul li a {
+  background: #222233 none;
+  box-shadow: 0px 0.5em 0px rgba(0, 0, 0, 0.4);
+}
+.mobile-menu nav ul li a.is-checked {
+  color: white;
+  background: #FFAA45 none;
+  text-decoration: none;
+}
+.lock-to-bottom {
+  position: fixed;
+  bottom: 2em;
+}
+
+.content {
+  margin-top: 6em;
+}
+.grid, .grid-item, .stamp {
+  padding: 0 !important;
+}
+.stamp {
+  position: absolute;
+  left: 16.66%;
+  top: 0;
+  width: 66.66%;
+  z-index: 2;
+  -webkit-transition: top 400ms ease-out;
+  -moz-transition: top 400ms ease-out;
+  -ms-transition: top 400ms ease-out;
+  -o-transition: top 400ms ease-out;
+  transition: top 400ms ease-out;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0px 0px 60px black;
+  border-bottom: 0.5em solid rgba(0, 0, 0, 0.4);
+}
+.grid-item {
+  display: block;
+}
+.grid-item a {
+  float: left;
+  display: block;
+  width: 100%;
+}
+.grid-item a img {
+  float: left;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@-webkit-keyframes bgscalein {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 0% 0%;
+  }
+}
+@keyframes bgscalein {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 0% 0%;
+  }
+}
+@-webkit-keyframes bgscaleout {
+  0% {
+    background-size: 0% 0%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+@keyframes bgscaleout {
+  0% {
+    background-size: 0% 0%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+.grid-item:nth-child(even) .trigger {
+  background: transparent url(grfx/triangle_bl.png) no-repeat left bottom;
+  background-size: 100% 100%;
+}
+.grid-item:nth-child(odd) .trigger {
+  background: transparent url(grfx/triangle_tr.png) no-repeat right top;
+  background-size: 100% 100%;
+}
+.grid-item:nth-child(3n+0) .trigger {
+  background: transparent url(grfx/triangle_br.png) no-repeat right bottom;
+  background-size: 100% 100%;
+}
+.grid-item:nth-child(4n+0) .trigger {
+  background: transparent url(grfx/triangle_tl.png) no-repeat left top;
+  background-size: 100% 100%;
+}
+.trigger {
+  -webkit-animation: bgscaleout 400ms 1; /* Chrome, Safari, Opera */
+  animation: bgscaleout 400ms 1;
+}
+.trigger:hover, .trigger.hover {
+  -webkit-animation: bgscalein 400ms 1; /* Chrome, Safari, Opera */
+  animation: bgscalein 400ms 1;
+}
+
+.trigger img {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%); /* For Webkit browsers */
+  filter: gray; /* For IE 6 - 9 */
+  -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+  opacity: 0.4;
+  -webkit-backface-visibility: hidden;
+}
+.trigger img:hover, .trigger.hover img {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+  opacity: 1;
+  -webkit-transition: all 400ms ease-out;
+  -moz-transition: all 400ms ease-out;
+  -ms-transition: all 400ms ease-out;
+  -o-transition: all 400ms ease-out;
+  transition: all 400ms ease-out;
+  -webkit-backface-visibility: hidden;
+}
+
+.infopane {
+  color: white;
+  background-color: #363C49;
+  float: left;
+  width: 100%;
+}
+.infopane .textbox {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+.infopane h1 {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+  font-size: 1em;
+  font-weight: bold;
+}
+.imagewrapper, .videowrapper {
+  text-align: center;
+  width: 100%;
+}
+.imagewrapper img {
+  vertical-align: middle;
+  height: auto;
+}
+.videowrapper, .mapwrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 0;
+  overflow: hidden;
+}
+.videowrapper iframe,
+.videowrapper object,
+.videowrapper embed,
+.videowrapper > div.owl-video-wrapper,
+.mapwrapper #google_map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.owl-theme .owl-controls .owl-nav .owl-prev,
+.owl-theme .owl-controls .owl-nav .owl-next,
+#prev_project,
+#next_project {
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: transparent none;
+  font-size: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+  line-height: 0;
+  opacity: 0.3;
+  -webkit-transition: opacity 400ms ease-out;
+  -moz-transition: opacity 400ms ease-out;
+  -ms-transition: opacity 400ms ease-out;
+  -o-transition: opacity 400ms ease-out;
+  transition: opacity 400ms ease-out;
+  -webkit-backface-visibility: hidden;
+}
+.owl-theme .owl-controls .owl-nav .owl-prev:hover,
+.owl-theme .owl-controls .owl-nav .owl-next:hover,
+#prev_project:hover,
+#next_project:hover {
+  opacity: 1;
+}
+.owl-theme .owl-controls .owl-nav .owl-prev, #prev_project {
+  left: 1em;
+	border-left: 20px solid transparent;
+	border-right: 30px solid white;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+}
+.owl-theme .owl-controls .owl-nav .owl-next, #next_project {
+  right: 1em;
+	border-left: 30px solid white;
+	border-right: 20px solid transparent;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+}
+#prev_project {
+  top: 50px;
+  border-right: 30px solid #FFAA45;
+}
+#next_project {
+  top: 50px;
+	border-left: 30px solid #FFAA45;
+}
+.owl-theme .owl-controls .owl-dots {
+  position: absolute;
+  bottom: -3em;
+  right: 1em;
+}
+.owl-theme .owl-dots .owl-dot span {
+  background: white;
+  opacity: 0.5;
+  -webkit-transition: opacity 400ms ease-out;
+  -moz-transition: opacity 400ms ease-out;
+  -ms-transition: opacity 400ms ease-out;
+  -o-transition: opacity 400ms ease-out;
+  transition: opacity 400ms ease-out;
+}
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: white;
+  opacity: 1;
+}
+
+.column_1 {
+  padding-top: 0.5em;
+  padding-bottom: 1em;
+  text-align: justify;
+}
+.column_2 {
+  padding-top: 2.1em;
+  padding-bottom: 1em;
+  text-align: justify;
+}
+
+.stamp a.closebtn {
+  display: block;
+  position: absolute;
+  z-index: 3;
+  bottom: -1em;
+  left: 50%;
+  margin-left: -1.5em;
+  text-indent: -9999px;
+  width: 3em;
+  height: 2.5em;
+  background: #FFAA45 url(grfx/cross.svg) no-repeat center center;
+  background-size: 40%;
+}
+@media (min-width: 992px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 767px) {
+  .mobile-menu {
+    display: block;
+  }
+  .stamp {
+    left: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 599px) {
+  .col-xxs-12 {
+    width: 100%;
+  }
+}

@@ -30,11 +30,11 @@
           </ul>
         </nav>
         <div class="col-xs-4 col-sm-2 noPadding">
-          <div class="col-xs-2 noPadding"><a href="#prev" id="prev_project"></a></div>
+          <div class="col-xs-2 noPadding"></div>
           <div class="col-xs-8 noPadding">
             <a href="#" title="Portfolio of Hallvard Kristiansen" rel="home" id="logo" class="text-center"><img src="grfx/gigil_logo.svg" alt="I gigil U" /></a>
           </div>
-          <div class="col-xs-2 noPadding"><a href="#next" id="next_project"></a></div>
+          <div class="col-xs-2 noPadding"></a></div>
         </div>
         <nav class="col-xs-4 col-sm-5">
           <ul class="text-right">
@@ -48,7 +48,7 @@
       <div class="row">
         <div class="grid col-xs-12">
           <div class="stamp" id="displaypane"></div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/actual_ones/quads/sample_quads_small.png" alt="sample_quads_small" width="500" height="500"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -75,7 +75,7 @@
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2 initial">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2 initial">
             <a href="#sample" class="trigger"><img src="samples/actual_ones/edgefolio/Fund_Profile_Revision.png" alt="Fund_Profile_Revision" width="1000" height="750"></a>
             <div class="infopane">
               <div class="owl-carousel owl-theme">
@@ -111,7 +111,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/actual_ones/desktop_hydroponics/sample.jpg" alt="sample" width="500" height="500"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -141,7 +141,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">b</div>
             <div class="games hidden">a</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_city_v3_green.png" alt="geometric_city_v3_green" width="800" height="1131"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -168,7 +168,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_city_v3.png" alt="geometric_city_v3" width="800" height="1131"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -194,7 +194,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_v2_alt.png" alt="geometric_v2_alt" width="800" height="1131"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -220,7 +220,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_v2_alt2.png" alt="geometric_v2_alt2" width="800" height="1131"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -246,7 +246,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_v2_alt3.png" alt="geometric_v2_alt3" width="1000" height="1414"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -272,7 +272,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">z</div>
             <div class="games hidden">z</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_v2_bw.png" alt="geometric_v2_bw" width="800" height="1131"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -298,7 +298,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">s</div>
             <div class="games hidden">e</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_v2.png" alt="geometric_v2" width="800" height="1131"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -324,7 +324,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">m</div>
             <div class="games hidden">q</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_v3_alt.png" alt="geometric_v3_alt" width="1000" height="1414"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -350,7 +350,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">m</div>
             <div class="games hidden">q</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/geometric_v3.png" alt="geometric_v3" width="800" height="1131"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -376,7 +376,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">m</div>
             <div class="games hidden">q</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/feel.png" alt="feel" width="537" height="543"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -402,7 +402,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">m</div>
             <div class="games hidden">q</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/feel2.png" alt="feel2" width="472" height="680"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -428,7 +428,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">m</div>
             <div class="games hidden">q</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/form-feel-2.png" alt="form-feel-2" width="290" height="291"></a>
             <div class="infopane">
               <div class="owl-carousel">
@@ -454,7 +454,7 @@ Django Rest API and data importer by Harish Narayanan and Bastien Bourdon.</p>
             <div class="electronics hidden">m</div>
             <div class="games hidden">q</div>
           </div>
-          <div class="grid-item col-xs-6 col-sm-2 col-md-2 col-lg-2">
+          <div class="grid-item col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <a href="#sample" class="trigger"><img src="samples/former-komposisjon.png" alt="former-komposisjon" width="320" height="260"></a>
             <div class="infopane">
               <div class="owl-carousel">

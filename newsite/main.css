@@ -108,9 +108,11 @@ nav ul li a.is-checked {
   -ms-transition: top 400ms ease-out;
   -o-transition: top 400ms ease-out;
   transition: top 400ms ease-out;
-  -webkit-backface-visibility: hidden;
   box-shadow: 0px 0px 60px black;
   border-bottom: 0.5em solid rgba(0, 0, 0, 0.4);
+}
+.stamp img {
+  -webkit-backface-visibility: hidden;
 }
 .grid-item {
   display: block;

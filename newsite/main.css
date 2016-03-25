@@ -9,9 +9,7 @@ body {
 }
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   min-height: 6em;
   z-index: 10;
@@ -94,7 +92,7 @@ nav ul li a.is-checked {
 }
 
 .content {
-  margin-top: 6em;
+  margin-top: 0;
 }
 .grid, .grid-item, .stamp {
   padding: 0 !important;

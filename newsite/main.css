@@ -1,8 +1,9 @@
 body {
   font-family: 'Oxygen','Helvetica Neue', 'Helvetica', sans-serif;
   font-size: 12px;
-  background: #2D323C url(grfx/bg_grid.png) repeat-y center center;
+  background: white url(grfx/bg_grid.png) repeat-y center center;
   overflow-y: scroll;
+  color: #2A2A2A;
 }
 .noPadding {
   padding: 0 !important;
@@ -13,7 +14,7 @@ body {
   width: 100%;
   min-height: 6em;
   z-index: 10;
-  background: #363C49 none;
+  background: white none;
   overflow: visible;
   box-shadow: 0px 0.5em 0px rgba(0, 0, 0, 0.4);
 }
@@ -31,7 +32,7 @@ nav ul li {
 }
 nav ul li a:link, nav ul li a:visited {
   display: inline-block;
-  color: white;
+  color: #2A2A2A;
   padding: 0.5em 0.5em;
   line-height: 1em;
   -webkit-transition: all 400ms ease-out;
@@ -41,19 +42,20 @@ nav ul li a:link, nav ul li a:visited {
   transition: all 400ms ease-out;
 }
 nav ul li a:hover {
-  background: #222233 none;
+  background: gray none;
+  color: white;
   text-decoration: none;
 }
 nav ul li a.is-checked {
   color: white;
-  background: #FFAA45 none;
+  background: #2A2A2A none;
   text-decoration: none;
 }
 
 #logo {
   display: block;
   width: 100%;
-  background: #FFAA45 none;
+  background: #2A2A2A none;
   padding: 1.5em 0 1.25em;
   position: absolute;
   top: 1em;
@@ -83,7 +85,7 @@ nav ul li a.is-checked {
 }
 .mobile-menu nav ul li a.is-checked {
   color: white;
-  background: #FFAA45 none;
+  background: #2A2A2A none;
   text-decoration: none;
 }
 .lock-to-bottom {
@@ -109,10 +111,12 @@ nav ul li a.is-checked {
   -o-transition: top 400ms ease-out;
   transition: top 400ms ease-out;
   box-shadow: 0px 0px 60px black;
-  border-bottom: 0.5em solid rgba(0, 0, 0, 0.4);
 }
 .stamp img {
   -webkit-backface-visibility: hidden;
+}
+.stamp .visible-xs {
+  display: block !important;
 }
 .grid-item {
   display: block;
@@ -187,6 +191,8 @@ nav ul li a.is-checked {
 }
 
 .trigger img {
+  width: 100%;
+  height: 100%;
   filter: grayscale(100%);
   filter: gray; /* For IE 6 - 9 */
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
@@ -196,7 +202,7 @@ nav ul li a.is-checked {
   -ms-transition: all 400ms ease-out;
   -o-transition: all 400ms ease-out;
   transition: all 400ms ease-out;
-  opacity: 0.4;
+  opacity: 0.75;
   -webkit-backface-visibility: hidden;
 }
 .trigger img:hover, .trigger.hover img {
@@ -208,8 +214,8 @@ nav ul li a.is-checked {
 }
 
 .infopane {
-  color: white;
-  background-color: #363C49;
+  color: #2A2A2A;
+  background-color: white;
   float: left;
   width: 100%;
 }
@@ -251,23 +257,34 @@ nav ul li a.is-checked {
   border: none;
 }
 
-.owl-theme .owl-controls .owl-nav .owl-prev,
-.owl-theme .owl-controls .owl-nav .owl-next,
-#prev_project,
-#next_project {
-  display: block;
+.owl-carousel .owl-controls .owl-nav {
+  position: relative;
+}
+.owl-carousel .owl-controls .owl-nav .owl-prev {
+  left: 3%;
+  border-left: 3px solid gray;
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+}
+.owl-carousel .owl-controls .owl-nav .owl-next {
+  right: 3%;
+  border-right: 3px solid gray;
+  -ms-transform: rotate(-45deg); /* IE 9 */
+  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+  transform: rotate(-45deg);
+}
+.owl-carousel .owl-controls .owl-nav .owl-prev,
+.owl-carousel .owl-controls .owl-nav .owl-next {
   position: absolute;
-  top: 50%;
-  margin-top: -20px;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background: transparent none;
-  font-size: 0;
-  width: 0;
-  height: 0;
+  margin-top: -31%;
+  background: transparent;
+  border-bottom: 3px solid gray;
+  text-indent: -9999px;
+  width: 2em;
+  height: 2em;
   padding: 0;
-  line-height: 0;
+  border-radius: 0;
   opacity: 0.3;
   -webkit-transition: opacity 400ms ease-out;
   -moz-transition: opacity 400ms ease-out;
@@ -276,41 +293,19 @@ nav ul li a.is-checked {
   transition: opacity 400ms ease-out;
   -webkit-backface-visibility: hidden;
 }
-.owl-theme .owl-controls .owl-nav .owl-prev:hover,
-.owl-theme .owl-controls .owl-nav .owl-next:hover,
-#prev_project:hover,
-#next_project:hover {
+.owl-carousel .owl-controls .owl-nav .owl-prev:hover,
+.owl-carousel .owl-controls .owl-nav .owl-next:hover {
   opacity: 1;
+  background: transparent;
 }
-.owl-theme .owl-controls .owl-nav .owl-prev, #prev_project {
-  left: 1em;
-	border-left: 20px solid transparent;
-	border-right: 30px solid white;
-	border-top: 20px solid transparent;
-	border-bottom: 20px solid transparent;
-}
-.owl-theme .owl-controls .owl-nav .owl-next, #next_project {
-  right: 1em;
-	border-left: 30px solid white;
-	border-right: 20px solid transparent;
-	border-top: 20px solid transparent;
-	border-bottom: 20px solid transparent;
-}
-#prev_project {
-  top: 50px;
-  border-right: 30px solid #FFAA45;
-}
-#next_project {
-  top: 50px;
-	border-left: 30px solid #FFAA45;
-}
+
 .owl-theme .owl-controls .owl-dots {
   position: absolute;
   bottom: -3em;
   right: 1em;
 }
 .owl-theme .owl-dots .owl-dot span {
-  background: white;
+  background: gray;
   opacity: 0.5;
   -webkit-transition: opacity 400ms ease-out;
   -moz-transition: opacity 400ms ease-out;
@@ -320,7 +315,7 @@ nav ul li a.is-checked {
 }
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-  background: white;
+  background: black;
   opacity: 1;
 }
 
@@ -345,7 +340,7 @@ nav ul li a.is-checked {
   text-indent: -9999px;
   width: 3em;
   height: 2.5em;
-  background: #FFAA45 url(grfx/cross.svg) no-repeat center center;
+  background: #2A2A2A url(grfx/cross.svg) no-repeat center center;
   background-size: 40%;
 }
 @media (min-width: 992px) {

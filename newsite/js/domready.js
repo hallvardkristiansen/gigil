@@ -9,6 +9,64 @@ function concatValues( obj ) {
 }
 var $grid = false;
 var prevTrigger = false;
+
+function hoverProject(which, what) {
+  switch(which) {
+    case 'prev':
+      switch(what) {
+        case 'in':
+          if (prevTrigger) {
+            $(prevTrigger).parents('.grid-item').prev('.grid-item').find('.trigger').addClass('hover');
+          } else {
+            $('.grid').find('.grid-item .trigger').last().addClass('hover');
+          }
+          break;
+        case 'out':
+          $('.trigger').removeClass('hover');
+          break;
+      }
+      break;
+    case 'next':
+      switch(what) {
+        case 'in':
+          if (prevTrigger) {
+            $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger').addClass('hover');
+          } else {
+            $('.grid').find('.grid-item .trigger').first().addClass('hover');
+          }
+          break;
+        case 'out':
+          $('.trigger').removeClass('hover');
+          break;
+      }
+      break;
+  }
+}
+function viewProject(which) {
+  switch(which) {
+    case 'prev':
+      if (prevTrigger) {
+        var prev_project = $(prevTrigger).parents('.grid-item').prev('.grid-item').find('.trigger');
+      }
+      if (!prevTrigger || !prev_project) {
+        var prev_project = $('.grid').find('.grid-item .trigger').last();
+      }
+      $(prev_project).click();
+      $(prev_project).parents('.grid-item').prev('.grid-item').find('.trigger').addClass('hover');
+      break;
+    case 'next':
+      if (prevTrigger) {
+        var next_project = $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger');
+      }
+      if (!prevTrigger || !next_project) {
+        var next_project = $('.grid').find('.grid-item .trigger').first();
+      }
+      $(next_project).click();
+      $(next_project).parents('.grid-item').next('.grid-item').find('.trigger').addClass('hover');
+      break;
+  }
+}
+
 $(document).ready(function() {
   $grid = $('.grid').isotope({
     layoutMode: 'packery',
@@ -38,16 +96,13 @@ $(document).ready(function() {
   $('.infopane').hide();
   
   $('#logo').click(function() {
-    $('#next_project').click();
+    viewProject('next');
+    hoverProject('next', 'in');
   });
   $('#logo').hover(function() {
-    if (prevTrigger) {
-      $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger').addClass('hover');
-    } else {
-      $('.grid').find('.grid-item .trigger').first().addClass('hover');
-    }
+    hoverProject('next', 'in');
   }, function() {
-    $('.trigger').removeClass('hover');
+    hoverProject('next', 'out');
   });
   
   var filters = {};
@@ -58,55 +113,18 @@ $(document).ready(function() {
     $grid.isotope({ sortBy: $(this).attr('data-filter') });
   });
   
-  $('#prev_project').hover(function() {
-    if (prevTrigger) {
-      $(prevTrigger).parents('.grid-item').prev('.grid-item').find('.trigger').addClass('hover');
-    } else {
-      $('.grid').find('.grid-item .trigger').last().addClass('hover');
-    }
-  }, function() {
-    $('.trigger').removeClass('hover');
-  });
-  $('#next_project').hover(function() {
-    if (prevTrigger) {
-      $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger').addClass('hover');
-    } else {
-      $('.grid').find('.grid-item .trigger').first().addClass('hover');
-    }
-  }, function() {
-    $('.trigger').removeClass('hover');
-  });
-  $('#prev_project').click(function() {
-    if (prevTrigger) {
-      var prev_project = $(prevTrigger).parents('.grid-item').prev('.grid-item').find('.trigger');
-    }
-    if (!prevTrigger || !prev_project) {
-      var prev_project = $('.grid').find('.grid-item .trigger').last();
-    }
-    $(prev_project).click();
-    $(prev_project).parents('.grid-item').prev('.grid-item').find('.trigger').addClass('hover');
-  });
-  $('#next_project').click(function() {
-    if (prevTrigger) {
-      var next_project = $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger');
-    }
-    if (!prevTrigger || !next_project) {
-      var next_project = $('.grid').find('.grid-item .trigger').first();
-    }
-    $(next_project).click();
-    $(next_project).parents('.grid-item').next('.grid-item').find('.trigger').addClass('hover');
-  });
-
   $(window).keydown(function(e) {
     var key = e.which;
     var carousel = $('#displaypane').find('.owl-carousel').data('owlCarousel');
     switch(key) {
       case 38:
-        $('#prev_project').click();
+        viewProject('prev');
+        hoverProject('prev', 'in');
         e.preventDefault();
       break;
       case 40:
-        $('#next_project').click();
+        viewProject('next');
+        hoverProject('next', 'in');
         e.preventDefault();
       break;
       case 37:
@@ -128,8 +146,8 @@ $(document).ready(function() {
       'top': 0,
       'left': $('#displaypane').offset().left,
       'width': $('#displaypane').width(),
-      'height': $('#displaypane').height(),
-      'opacity': 0
+      'height': $('#displaypane .owl-carousel').height(),
+      'opacity': 0.2
     }, 100, function() {
       $(that).parents('.grid-item').hide();
       if (prevTrigger) {

@@ -13,30 +13,38 @@ var prevTrigger = false;
 function hoverProject(which, what) {
   switch(which) {
     case 'prev':
+      if (prevTrigger) {
+        var prev_project = $(prevTrigger).parents('.grid-item').prev('.grid-item').find('.trigger');
+      }
       switch(what) {
         case 'in':
-          if (prevTrigger) {
-            $(prevTrigger).parents('.grid-item').prev('.grid-item').find('.trigger').addClass('hover');
-          } else {
-            $('.grid').find('.grid-item .trigger').last().addClass('hover');
+          if (!prev_project.length) {
+            var prev_project = $('.grid').find('.grid-item .trigger').last();
           }
+          prev_project.addClass('hover');
+          console.log('in', prev_project);
           break;
         case 'out':
           $('.trigger').removeClass('hover');
+          console.log('out');
           break;
       }
       break;
     case 'next':
+      if (prevTrigger) {
+        var next_project = $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger');
+      }
       switch(what) {
         case 'in':
-          if (prevTrigger) {
-            $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger').addClass('hover');
-          } else {
-            $('.grid').find('.grid-item .trigger').first().addClass('hover');
+          if (!next_project.length) {
+            var next_project = $('.grid').find('.grid-item .trigger').first();
           }
+          next_project.addClass('hover');
+          console.log('in', next_project);
           break;
         case 'out':
           $('.trigger').removeClass('hover');
+          console.log('out');
           break;
       }
       break;
@@ -48,21 +56,19 @@ function viewProject(which) {
       if (prevTrigger) {
         var prev_project = $(prevTrigger).parents('.grid-item').prev('.grid-item').find('.trigger');
       }
-      if (!prevTrigger || !prev_project) {
-        var prev_project = $('.grid').find('.grid-item .trigger').last();
+      if (!prevTrigger.length || !prev_project.length) {
+        var prev_project = $('.grid .grid-item .trigger').last();
       }
       $(prev_project).click();
-      $(prev_project).parents('.grid-item').prev('.grid-item').find('.trigger').addClass('hover');
       break;
     case 'next':
       if (prevTrigger) {
         var next_project = $(prevTrigger).parents('.grid-item').next('.grid-item').find('.trigger');
       }
-      if (!prevTrigger || !next_project) {
-        var next_project = $('.grid').find('.grid-item .trigger').first();
+      if (!prevTrigger.length || !next_project.length) {
+        var next_project = $('.grid .grid-item .trigger').first();
       }
       $(next_project).click();
-      $(next_project).parents('.grid-item').next('.grid-item').find('.trigger').addClass('hover');
       break;
   }
 }
@@ -95,15 +101,15 @@ $(document).ready(function() {
   var allCarousels = $('.owl-carousel').data('owlCarousel');
   $('.infopane').hide();
   
-  $('#logo').click(function() {
-    viewProject('next');
-    hoverProject('next', 'in');
-  });
-  $('#logo').hover(function() {
-    hoverProject('next', 'in');
-  }, function() {
-    hoverProject('next', 'out');
-  });
+//  $('#logo').click(function() {
+//    viewProject('next');
+//    hoverProject('next', 'in');
+//  });
+//  $('#logo').hover(function() {
+//    hoverProject('next', 'in');
+//  }, function() {
+//    hoverProject('next', 'out');
+//  });
   
   var filters = {};
   $('.filters').on( 'click', 'a', function() {
@@ -142,25 +148,34 @@ $(document).ready(function() {
 
   $('.trigger').click(function() {
     var that = this;
-    $(this).parents('.grid-item').css('z-index', 4).animate({
-      'top': 0,
-      'left': $('#displaypane').offset().left,
-      'width': $('#displaypane').width(),
-      'height': $('#displaypane .owl-carousel').height(),
-      'opacity': 0.2
-    }, 100, function() {
-      $(that).parents('.grid-item').hide();
-      if (prevTrigger) {
-        $(prevTrigger).parents('.grid-item').css({
-          'top': '0%',
-          'left': '-40%',
+    var targetWidth = $('#displaypane').width();
+    var targetPos = {
+      x: $('#displaypane').offset().left,
+      y: 0
+    };
+    var thisItem = $(this).parents('.grid-item');
+    thisItem.addClass('animate');
+    thisItem.css({
+      'width': '33.33%',
+      'left': '50%',
+      'top': '5%',
+      'margin-left': '-16.66%'
+    });
+    var prevItem = prevTrigger.length ? $(prevTrigger).parents('.grid-item') : false;
+    setTimeout(function() {
+      $('.grid .selected').removeClass('selected');
+      thisItem.hide();
+      if (prevItem.length) {
+        prevItem.removeClass('animate');
+        prevItem.show();
+        prevItem.css({
           'width': '',
-          'height': '',
-          'opacity': '',
-          'z-index': 1
-        }).show();
+          'left': '',
+          'top': '',
+          'margin-left': ''
+        });
         var oldPane = $('#displaypane').find('.infopane').detach();
-        $(oldPane).hide().insertAfter(prevTrigger);
+        $(oldPane).hide().insertAfter(prevItem.find('.trigger'));
       } else {
         $('#displaypane').empty();
       }
@@ -171,13 +186,48 @@ $(document).ready(function() {
       carousel.invalidate('width');
       carousel.refresh();
       $grid.isotope('layout');
-      prevTrigger = $(that);
-    });
+    }, 150);
     $('.trigger').removeClass('hover');
+    prevTrigger = $(that);
   });
   
   
   $('.initial .trigger').click();
+  
+  var logo = new logo_stringify({
+    'selector': '#logo',
+    'initialized': false,
+    'origin': [$('#logo').width() - ($('#logo').width() / 3.5), $('#logo').height() - 10],
+    'w': $('#logo').width(),
+    'h': $('#logo').height() + 32,
+    'isDown': false,
+    'cpos': [$('#logo').width(), $('#logo').height()],
+    'currentVectors': [],
+    'startVectors': [],
+    'deltas': [],
+    'scale': 0.5,
+    'zeropoints': logo_startvectors,
+    'newpoints': logo_endvectors
+  });
+  $('#logo').empty();
+  logo.init();
+  logo.introanim();
+  logo.svg.on('mousedown', function() {
+    logo.isDown = true;//(cpos[0] > origin[0] - 20 && cpos[0] < origin[0] + 20 && cpos[1] > origin[1] - 20 && cpos[1] < origin[1] + 20);
+  });
+  logo.svg.on('mousemove', function() {
+    if (logo.isDown){
+      logo.cpos = d3.mouse(this);
+      logo.path.attr('d', logo.dragPath(logo.cpos));
+      logo.grab.attr("cx", logo.cpos[0]).attr("cy", logo.cpos[1]);
+    }
+  });
+  logo.svg.on('mouseup', function() {
+    logo.cpos = d3.mouse(this);
+    if (logo.isDown) {
+      logo.isDown = false;
+    }
+  });
 });
 
 $(window).load(function() {

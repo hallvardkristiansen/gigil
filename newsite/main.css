@@ -1,10 +1,15 @@
 body {
-  font-family: 'Oxygen','Helvetica Neue', 'Helvetica', sans-serif;
+  font-family: 'Oxygen', 'Helvetica Neue', 'Helvetica', sans-serif;
   font-size: 12px;
   background: white url(grfx/bg_grid.png) repeat-y center center;
   overflow-y: scroll;
   color: #2A2A2A;
 }
+
+*:focus {
+  outline: none;
+}
+
 .noPadding {
   padding: 0 !important;
 }
@@ -68,6 +73,47 @@ nav ul li a.is-checked {
   height: auto;
 }
 
+
+#logo rect {
+  fill: none;
+  pointer-events: all;
+}
+
+#logo .grabber {
+  cursor: pointer;
+  fill: red;
+}
+
+#logo .line {
+  fill: none;
+  stroke: white;
+  stroke-width: 1px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10px;
+}
+#logo .blackline {
+  fill: none;
+  stroke: #2A2A2A;
+  stroke-width: 1px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10px;
+}
+
+#logo .dot {
+  fill: white;
+}
+
+#logo .selected {
+  fill: #ff7f0e;
+  stroke: #ff7f0e;
+}
+
+
+
+
+
 .mobile-menu {
   display: none;
   width: 100%;
@@ -110,7 +156,7 @@ nav ul li a.is-checked {
   -ms-transition: top 400ms ease-out;
   -o-transition: top 400ms ease-out;
   transition: top 400ms ease-out;
-  box-shadow: 0px 0px 60px black;
+  box-shadow: 0px 0.5em 0px rgba(0, 0, 0, 0.4);
 }
 .stamp img {
   -webkit-backface-visibility: hidden;
@@ -131,6 +177,13 @@ nav ul li a.is-checked {
   display: block;
   width: 100%;
   height: auto;
+}
+.grid-item.animate {
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  -ms-transition: all 100ms ease-in;
+  -o-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
 }
 
 @-webkit-keyframes bgscalein {
@@ -223,7 +276,17 @@ nav ul li a.is-checked {
   float: left;
   clear: both;
   width: 100%;
+  padding: 1.5em 0 2em 0;
 }
+.column_1 {
+  padding-top: 0em;
+  text-align: justify;
+}
+.column_2 {
+  padding-top: 1.6em;
+  text-align: justify;
+}
+
 .infopane h1 {
   margin: 0 0 0.5em 0;
   padding: 0;
@@ -258,7 +321,13 @@ nav ul li a.is-checked {
 }
 
 .owl-carousel .owl-controls .owl-nav {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  z-index: 11;
+  overflow-y: hidden;
+  width: 100%;
+  height: 4em;
 }
 .owl-carousel .owl-controls .owl-nav .owl-prev {
   left: 3%;
@@ -277,7 +346,7 @@ nav ul li a.is-checked {
 .owl-carousel .owl-controls .owl-nav .owl-prev,
 .owl-carousel .owl-controls .owl-nav .owl-next {
   position: absolute;
-  margin-top: -31%;
+  top: 0%;
   background: transparent;
   border-bottom: 3px solid gray;
   text-indent: -9999px;
@@ -317,17 +386,6 @@ nav ul li a.is-checked {
 .owl-theme .owl-dots .owl-dot:hover span {
   background: black;
   opacity: 1;
-}
-
-.column_1 {
-  padding-top: 0.5em;
-  padding-bottom: 1em;
-  text-align: justify;
-}
-.column_2 {
-  padding-top: 2.1em;
-  padding-bottom: 1em;
-  text-align: justify;
 }
 
 .stamp a.closebtn {

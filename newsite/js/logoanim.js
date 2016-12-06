@@ -1,4 +1,125 @@
-var zeropoints = [
+function logo_stringify(options) {
+  this.options = options;
+}
+
+logo_stringify.prototype.scaleByDelta = function(d1, d2) {
+  var factor = d1[0] / d2[0];
+  return [d2[1][0] * factor, d2[1][1] * factor];
+}
+
+logo_stringify.prototype.getNewVector = function(b1, db1a1, a2) {
+  var delta_b1a2 = this.getDelta(b1, a2);
+  if (db1a1[0] < delta_b1a2[0]) {
+    var err = this.scaleByDelta(db1a1, delta_b1a2);
+    return [a2[0] + err[0], a2[1] + err[1]];
+  } else {
+    return b1;
+  }
+}
+
+logo_stringify.prototype.dragPath = function(cpos) {
+  var pathd = 'M' + cpos[0] + ',' + cpos[1];
+  for (var i = 0; i < this.options.currentVectors.length; i++) {
+    var b1 = this.options.currentVectors[i];
+    var a2 = (i > 0) ? this.options.currentVectors[i-1] : [cpos[0], cpos[1]];
+    this.options.currentVectors[i] = this.getNewVector(b1, this.options.deltas[i], a2);
+    pathd += 'C' + this.options.currentVectors[i][0] + ',' + this.options.currentVectors[i][1] + ',' + this.options.currentVectors[i][0] + ',' + this.options.currentVectors[i][1] + ',' + this.options.currentVectors[i][0] + ',' + this.options.currentVectors[i][1] + ' ';
+  }
+  return pathd;
+}
+
+logo_stringify.prototype.getOffset = function(p1, p2) {
+  var xoffset = p1[0] - p2[0];
+  var yoffset = p1[1] - p2[1];
+  return [xoffset, yoffset];
+}
+
+logo_stringify.prototype.getDelta = function(p1, p2) {
+  var off = this.getOffset(p1, p2);
+  var delta = Math.sqrt((off[0] * off[0]) + (off[1] * off[1]));
+  return [delta, off];
+}
+
+logo_stringify.prototype.createPath = function(linevectors, origin) {
+  var returnstring = 'M' + origin[0] + ',' + origin[1];
+  var pvector = [origin[0], origin[1]];
+  var zero = origin;
+  for (var i = 0; i < linevectors.length; i++) {
+    var vector = linevectors[i].slice();
+    this.options.currentVectors[i] = [zero[0] + (vector[4] * this.options.scale), zero[1] + (vector[5] * this.options.scale)];
+    this.options.deltas[i] = this.getDelta(this.options.currentVectors[i], pvector);
+    pvector = this.options.currentVectors[i];
+    returnstring += 'C' + this.options.currentVectors[i][0] + ',' + this.options.currentVectors[i][1] + ',' + this.options.currentVectors[i][0] + ',' + this.options.currentVectors[i][1] + ',' + this.options.currentVectors[i][0] + ',' + this.options.currentVectors[i][1] + ' ';
+    zero = this.options.currentVectors[i];
+  }
+  this.options.startVectors = this.options.currentVectors.slice();
+  return returnstring;
+}
+
+logo_stringify.prototype.init = function() {
+  if (!this.options.initialized) {
+    this.svg = d3.select(this.options.selector).append("svg")
+      .attr("width", this.options.w)
+      .attr("height", this.options.h)
+      .attr("tabindex", 1);
+    
+    this.bgd = this.createPath(this.options.newpoints, this.options.origin);
+    
+    this.bgpath = this.svg.append("path")
+      .attr("d", this.bgd)
+      .attr("class", "blackline");
+      
+    this.path = this.svg.append("path")
+      .attr("class", "line");
+    
+    this.dot1 = this.svg.append("circle")
+      .attr("r", 1)
+      .attr("cx", this.options.origin[0] - 30)
+      .attr("cy", -8)
+      .attr("class", "dot");
+    
+    this.dot2 = this.svg.append("circle")
+      .attr("r", 1)
+      .attr("cx", this.options.origin[0] - 15)
+      .attr("cy", -8)
+      .attr("class", "dot");
+    
+    this.grab = this.svg.append("circle")
+      .attr("r", 2)
+      .attr("cx", this.options.origin[0])
+      .attr("cy", this.options.origin[1])
+      .attr('opacity', 1)
+      .attr("class", "grabber");
+  }
+}
+
+logo_stringify.prototype.introanim = function() {
+  this.path.transition()
+    .duration(100)
+    .ease("linear")
+    .attr("d", this.createPath(this.options.zeropoints, [200, 120]))
+    .transition()
+    .duration(300)
+    .ease("sin-out")
+    .attr("d", this.createPath(this.options.newpoints, this.options.origin));
+
+  this.dot1.transition()
+    .delay(700)
+    .duration(200)
+    .ease("elastic-in")
+    .attr("cx", this.options.origin[0] - 33.5)
+    .attr("cy", this.options.origin[1] - 2);
+  this.dot2.transition()
+    .delay(700)
+    .duration(250)
+    .ease("elastic-in")
+    .attr("cx", this.options.origin[0] - 13.5)
+    .attr("cy", this.options.origin[1] - 9);
+    
+  this.options.initialized = true;
+}
+
+var logo_startvectors = [
   [0, 0, 0, 0, 0, 0], 
   [0, 0, 0, 0, -0.1, 0], 
   [0, 0, 0, 0, -0.1, 0], 
@@ -313,7 +434,7 @@ var zeropoints = [
   [0, 0, 0, 0, 0.1, 0]
 ];
 
-var newpoints = [
+var logo_endvectors = [
  [0, 0, 0, 0.1, 0, 0.2], 
  [0, 0.2, 0, 0.4, -0.1, 0.7], 
  [0, 0.3, -0.1, 0.6, -0.1, 1], 
@@ -627,163 +748,3 @@ var newpoints = [
  [0.1, 0.3, 0.2, 0.5, 0.3, 0.7], 
  [0.1, 0.2, 0.1, 0.3, 0.1, 0.3]
 ];
-
-var width = 1200,
-    height = 900;
-var scale = 1;
-var toggle = true;
-var initialized = false;
-
-var origin = [200,100];
-var isDown = false;
-var cpos = [200, 100];
-
-var currentVectors = [];
-var startVectors = [];
-var deltas = [];
-
-var returninterval = false;
-
-var size = {
-  'x': 280,
-  'y': 170
-}
-
-var svg = d3.select("#logo").append("svg")
-  .attr("width", $('#logo').width())
-  .attr("height", $('#logo').height())
-  .attr("tabindex", 1);
-
-var circle = svg.append("circle")
-  .attr("r", 78)
-  .attr("cx", 149)
-  .attr("cy", 119)
-  .attr("class", "circle");
-
-var bgd = createPath(newpoints, origin);
-
-var bgpath = svg.append("path")
-  .attr("d", bgd)
-  .attr("class", "blackline");
-  
-var path = svg.append("path")
-  .attr("class", "line");
-
-var dot1 = svg.append("circle")
-  .attr("r", 2)
-  .attr("cx", 133)
-  .attr("cy", -8)
-  .attr("class", "dot");
-
-var dot2 = svg.append("circle")
-  .attr("r", 2)
-  .attr("cx", 174)
-  .attr("cy", -8)
-  .attr("class", "dot");
-
-var grab = svg.append("circle")
-  .attr("r", 2)
-  .attr("cx", 200)
-  .attr("cy", 100)
-  .attr('opacity', 0)
-  .attr("class", "grabber");
-
-function createPath(linevectors, origin) {
-  var returnstring = 'M' + origin[0] + ',' + origin[1];
-  var pvector = [origin[0], origin[1]];
-  var zero = origin;
-  for (var i = 0; i < linevectors.length; i++) {
-    var vector = linevectors[i].slice();
-    currentVectors[i] = [zero[0] + vector[4], zero[1] + vector[5]];
-    deltas[i] = getDelta(currentVectors[i], pvector);
-    pvector = currentVectors[i];
-    returnstring += 'C' + currentVectors[i][0] + ',' + currentVectors[i][1] + ',' + currentVectors[i][0] + ',' + currentVectors[i][1] + ',' + currentVectors[i][0] + ',' + currentVectors[i][1] + ' ';
-    zero = currentVectors[i];
-  }
-  startVectors = currentVectors.slice();
-  return returnstring;
-}
-
-function dragPath(cpos) {
-  var pathd = 'M' + cpos[0] + ',' + cpos[1];
-  for (var i = 0; i < currentVectors.length; i++) {
-    var b1 = currentVectors[i];
-    var a2 = (i > 0) ? currentVectors[i-1] : [cpos[0], cpos[1]];
-    currentVectors[i] = getNewVector(b1, deltas[i], a2);
-    pathd += 'C' + currentVectors[i][0] + ',' + currentVectors[i][1] + ',' + currentVectors[i][0] + ',' + currentVectors[i][1] + ',' + currentVectors[i][0] + ',' + currentVectors[i][1] + ' ';
-  }
-  return pathd;
-}
-
-function getOffset(p1, p2) {
-  var xoffset = p1[0] - p2[0];
-  var yoffset = p1[1] - p2[1];
-  return [xoffset, yoffset];
-}
-
-function getDelta(p1, p2) {
-  var off = getOffset(p1, p2);
-  var delta = Math.sqrt((off[0] * off[0]) + (off[1] * off[1]));
-  return [delta, off];
-}
-
-function scaleByDelta(d1, d2) {
-  var factor = d1[0] / d2[0];
-  return [d2[1][0] * factor, d2[1][1] * factor];
-}
-
-function getNewVector(b1, db1a1, a2) {
-  var delta_b1a2 = getDelta(b1, a2);
-  if (db1a1[0] < delta_b1a2[0]) {
-    var err = scaleByDelta(db1a1, delta_b1a2);
-    return [a2[0] + err[0], a2[1] + err[1]];
-  } else {
-    return b1;
-  }
-}
-
-if (!initialized) {
-  path.transition()
-    .duration(100)
-    .ease("linear")
-    .attr("d", createPath(zeropoints, [200, 120]))
-    .transition()
-    .duration(300)
-    .ease("sin-out")
-    .attr("d", createPath(newpoints, origin));
-
-  dot1.transition()
-    .delay(700)
-    .duration(200)
-    .ease("elastic-in")
-    .attr("cx", 133)
-    .attr("cy", 95);
-  dot2.transition()
-    .delay(700)
-    .duration(250)
-    .ease("elastic-in")
-    .attr("cx", 174)
-    .attr("cy", 80);
-    
-  initialized = true;
-}
-
-function mousedown() {
-  isDown = true;//(cpos[0] > origin[0] - 20 && cpos[0] < origin[0] + 20 && cpos[1] > origin[1] - 20 && cpos[1] < origin[1] + 20);
-}
-function mousemove() {
-  if (isDown){
-    cpos = d3.mouse(this);
-    path.attr('d', dragPath(cpos));
-  }
-}
-function mouseup() {
-  cpos = d3.mouse(this);
-  if (isDown) {
-    isDown = false;
-  }
-}
-svg.on('mousedown', mousedown);
-svg.on('mousemove', mousemove);
-svg.on('mouseup', mouseup);
-
